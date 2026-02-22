@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - "v*"
-      
+
 permissions:
   contents: write
 
@@ -39,12 +39,15 @@ jobs:
           fi
         shell: bash
 
-      - name: Rename output
+      - name: Prepare artifacts
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
             mv dist/app.exe dist/webp-converter.exe
           else
             mv dist/app.app dist/webp-converter.app
+            cd dist
+            zip -r webp-converter-mac.zip webp-converter.app
+            rm -rf webp-converter.app
           fi
         shell: bash
 
