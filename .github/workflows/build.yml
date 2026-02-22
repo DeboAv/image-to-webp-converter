@@ -35,7 +35,7 @@ jobs:
           if [ "$RUNNER_OS" == "Windows" ]; then
             pyinstaller --onefile --windowed --icon=icon.ico app.py
           else
-            pyinstaller --onefile --windowed app.py
+            pyinstaller --windowed app.py
           fi
         shell: bash
 
@@ -44,7 +44,7 @@ jobs:
           if [ "$RUNNER_OS" == "Windows" ]; then
             mv dist/app.exe dist/webp-converter.exe
           else
-            mv dist/app dist/webp-converter
+            mv dist/app dist/webp-converter.app
           fi
         shell: bash
 
